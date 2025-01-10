@@ -82,9 +82,11 @@ def display_book(book: Book, display_type: str) -> None:
     display = DisplayBook(display_type)
     display.display(book)
 
+
 def print_book(book: Book, print_type: str) -> None:
     my_print = PrintBook(print_type)
     my_print.print_book(book)
+
 
 def serialize_book(book: Book, serializer_type: str) -> str:
     serializer = BookSerializer(serializer_type)
