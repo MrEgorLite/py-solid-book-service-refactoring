@@ -78,17 +78,27 @@ class BookSerializer:
             raise ValueError(f"Unknown serialize type: {self._serialize_type}")
 
 
+def display_book(book: Book, display_type: str) -> None:
+    display = DisplayBook(display_type)
+    display.display(book)
+
+def print_book(book: Book, print_type: str) -> None:
+    my_print = PrintBook(print_type)
+    my_print.print_book(book)
+
+def serialize_book(book: Book, serializer_type: str) -> str:
+    serializer = BookSerializer(serializer_type)
+    return serializer.serialize(book)
+
+
 def main(book: Book, commands: list[tuple[str, str]]) -> None | str:
     for cmd, method_type in commands:
         if cmd == "display":
-            display = DisplayBook(method_type)
-            display.display(book)
+            display_book(book, method_type)
         elif cmd == "print":
-            myprint = PrintBook(method_type)
-            myprint.print_book(book)
+            print_book(book, method_type)
         elif cmd == "serialize":
-            serializer = BookSerializer(method_type)
-            return serializer.serialize(book)
+            return serialize_book(book, method_type)
 
 
 if __name__ == "__main__":
